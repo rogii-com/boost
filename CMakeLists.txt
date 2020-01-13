@@ -7,6 +7,34 @@ project(
     boost
 )
 
+set(
+    SUBMODULE_INFO_SHOWN
+    OFF
+    CACHE
+        BOOL
+        "Was the information on how to correctly update submodules shown?"
+)
+
+if(NOT SUBMODULE_INFO_SHOWN)
+    set(
+        SUBMODULE_INFO_SHOWN
+        ON
+        CACHE
+            BOOL
+            "Was the information on how to correctly update submodules shown?"
+        FORCE
+    )
+
+    message(
+        FATAL_ERROR
+        "To update submodules firt call 'git submodule init', then edit .git/config and change "
+        "url for all submodules except cnpm: replace rogii-com to boostorg. This is required "
+        "because we use our fork of the superproject but all submodules are set with relative path "
+        "and we don't fork them. After that 'git submodule update --recursive' may be called as usual. "
+        "For details check https://stackoverflow.com/a/42035018 ."
+    )
+endif()
+
 include(
     "${PROJECT_SOURCE_DIR}/cmake/npm/NastyPackageManager.cmake"
 )
