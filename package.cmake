@@ -54,74 +54,64 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     )
 endif()
 
-if(WIN32)
-    set(
-        COMPONENTS
+set(
+    COMPONENTS
 
-        atomic
-        chrono
-        container
-        context
-        contract
-        coroutine
-        date_time
-        exception
-        fiber_numa
-        fiber
-        filesystem
-        graph_parallel
-        graph
-        headers
-        iostreams
-        locale
-        log_setup
-        log
-        math_c99
-        math_c99f
-        math_c99l
-        math_tr1
-        math_tr1f
-        math_tr1l
-        numpy
-        prg_exec_monitor
-        program_options
-        python
-        random
-        regex
-        serialization
-        stacktrace_addr2line
-        stacktrace_backtrace
-        stacktrace_basic
-        stacktrace_noop
-        stacktrace_windbg_cached
-        stacktrace_windbg
-        system
-        test_exec_monitor
-        thread
-        timer
-        type_erasure
-        unit_test_framework
-        wave
-        wserialization
-    )
+    atomic
+    chrono
+    container
+    context
+    contract
+    coroutine
+    date_time
+    exception
+    fiber_numa
+    fiber
+    filesystem
+    graph_parallel
+    graph
+    headers
+    iostreams
+    locale
+    log_setup
+    log
+    math_c99
+    math_c99f
+    math_c99l
+    math_tr1
+    math_tr1f
+    math_tr1l
+    numpy
+    prg_exec_monitor
+    program_options
+    python
+    random
+    regex
+    serialization
+    stacktrace_addr2line
+    stacktrace_backtrace
+    stacktrace_basic
+    stacktrace_noop
+    stacktrace_windbg_cached
+    stacktrace_windbg
+    system
+    test_exec_monitor
+    thread
+    timer
+    type_erasure
+    unit_test_framework
+    wave
+    wserialization
+)
 
-	find_package(
-		Boost
-		1.72.0
-			EXACT
-		REQUIRED
-            ${COMPONENTS}
-        CONFIG
-	)
-elseif(UNIX)
-	find_package(
-		Boost
-		1.72
-			EXACT
-		REQUIRED
-			python37
-	)
-endif()
+find_package(
+    Boost
+    1.72.0
+        EXACT
+    REQUIRED
+        ${COMPONENTS}
+    CONFIG
+)
 
 set(
     CMAKE_MODULE_PATH

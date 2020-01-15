@@ -137,17 +137,19 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         COMMAND
             ./bootstrap.sh
         WORKING_DIRECTORY
-            "${boost_SOURCE_DIR}"
+            ${boost_SOURCE_DIR}
+        USES_TERMINAL
     )
     add_custom_command(
         OUTPUT
-            ${CMAKE_INSTALL_PREFIX}/include/boost-1_68/boost/version.hpp
+            ${CMAKE_INSTALL_PREFIX}/include/boost-1_72/boost/version.hpp
         COMMAND
-            export PYTHON_LIBDIR=${PYTHON_LIBDIR}
-        COMMAND
-            ${CMAKE_COMMAND} -E env PYTHON_LIBDIR=${PYTHON_LIBDIR} ./b2 install -j8 toolset=${TOOLSET} ${ADDRESS_MODEL} --build-type=minimal --user-config=${USER_CONFIG} python=3.7 --prefix=${CMAKE_INSTALL_PREFIX}
+            ${CMAKE_COMMAND} -E env PYTHON_LIBDIR=${PYTHON_LIBDIR} ./b2 install -j8 toolset=${TOOLSET} variant=debug,release link=static threading=multi runtime-link=shared ${ADDRESS_MODEL} --layout=versioned --build-type=minimal --user-config=${USER_CONFIG} python=3.7 --prefix=${CMAKE_INSTALL_PREFIX}
+        DEPENDS
+            ${boost_SOURCE_DIR}/project-config.jam
         WORKING_DIRECTORY
-            "${boost_SOURCE_DIR}"
+            ${boost_SOURCE_DIR}
+        USES_TERMINAL
     )
 elseif(MSVC)
     set(
@@ -188,7 +190,6 @@ add_custom_target(
     ${PROJECT_NAME}
     ALL
     DEPENDS
-        ${boost_SOURCE_DIR}/project-config.jam
         ${CMAKE_INSTALL_PREFIX}/include/boost-1_72/boost/version.hpp
 )
 
