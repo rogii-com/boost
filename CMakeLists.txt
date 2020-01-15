@@ -1,6 +1,6 @@
 cmake_minimum_required(
     VERSION
-    3.9.5
+    3.12.4
 )
 
 project(
@@ -179,18 +179,18 @@ elseif(MSVC)
             -P ${PROJECT_SOURCE_DIR}/cmake/ProjectConfig.cmake
         WORKING_DIRECTORY
             ${PROJECT_SOURCE_DIR}
+        USES_TERMINAL
     )
     add_custom_command(
         OUTPUT
             ${CMAKE_INSTALL_PREFIX}/include/boost-1_72/boost/version.hpp
         COMMAND
-            set PYTHON_LIBDIR=${PYTHON_LIBDIR}
-        COMMAND
-            set PYTHONPATH=${PYTHON_LIBDIR}/python37.zip
-        COMMAND
-            b2 install -j8 toolset=${TOOLSET} ${ADDRESS_MODEL} --build-type=minimal --user-config=${USER_CONFIG} python=3.7 --prefix=${CMAKE_INSTALL_PREFIX}
+            ${CMAKE_COMMAND} -E env PYTHON_LIBDIR=${PYTHON_LIBDIR} PYTHONPATH=${PYTHON_LIBDIR}/python37.zip b2 install -j8 toolset=${TOOLSET} ${ADDRESS_MODEL} --build-type=minimal --user-config=${USER_CONFIG} python=3.7 --prefix=${CMAKE_INSTALL_PREFIX}
+        DEPENDS
+            ${boost_SOURCE_DIR}/project-config.jam
         WORKING_DIRECTORY
             ${PROJECT_SOURCE_DIR}
+        USES_TERMINAL
     )
 endif()
 
