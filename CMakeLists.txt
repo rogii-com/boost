@@ -71,7 +71,7 @@ elseif(MSVC)
         VERSION
             10.0.18362.0
         BUILD_NUMBER
-            0
+            1
     )
     NPM_ADD_PACKAGE(
         NAME
