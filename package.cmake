@@ -20,7 +20,7 @@ set(
 
 set(
     Boost_DEBUG
-    ON
+    OFF
 )
 
 set(
