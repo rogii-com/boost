@@ -42,6 +42,14 @@ include(
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     NPM_ADD_PACKAGE(
         NAME
+            gxx_runtime
+        VERSION
+            9.2.1
+        BUILD_NUMBER
+            0
+    )
+    NPM_ADD_PACKAGE(
+        NAME
             python
         VERSION
             3.7.4
