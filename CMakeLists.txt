@@ -152,7 +152,24 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         OUTPUT
             ${CMAKE_INSTALL_PREFIX}/include/boost-1_72/boost/version.hpp
         COMMAND
-            ${CMAKE_COMMAND} -E env PYTHON_LIBDIR=${PYTHON_LIBDIR} ./b2 install -j8 toolset=${TOOLSET} variant=debug,release link=static threading=multi runtime-link=shared ${ADDRESS_MODEL} --layout=versioned --build-type=minimal --user-config=${USER_CONFIG} python=3.7 --prefix=${CMAKE_INSTALL_PREFIX}
+            ${CMAKE_COMMAND}
+            -E
+            env
+            PYTHON_LIBDIR=${PYTHON_LIBDIR}
+            ./b2
+            install
+            -j8
+            toolset=${TOOLSET}
+            variant=debug,release
+            link=static
+            threading=multi
+            runtime-link=shared
+            ${ADDRESS_MODEL}
+            --layout=versioned
+            --build-type=minimal
+            --user-config=${USER_CONFIG}
+            python=3.7
+            --prefix=${CMAKE_INSTALL_PREFIX}
         DEPENDS
             ${boost_SOURCE_DIR}/project-config.jam
         WORKING_DIRECTORY
@@ -185,7 +202,20 @@ elseif(MSVC)
         OUTPUT
             ${CMAKE_INSTALL_PREFIX}/include/boost-1_72/boost/version.hpp
         COMMAND
-            ${CMAKE_COMMAND} -E env PYTHON_LIBDIR=${PYTHON_LIBDIR} PYTHONPATH=${PYTHON_LIBDIR}/python37.zip b2 install -j8 toolset=${TOOLSET} ${ADDRESS_MODEL} --build-type=minimal --user-config=${USER_CONFIG} python=3.7 --prefix=${CMAKE_INSTALL_PREFIX}
+            ${CMAKE_COMMAND}
+            -E
+            env
+            PYTHON_LIBDIR=${PYTHON_LIBDIR}
+            PYTHONPATH=${PYTHON_LIBDIR}/python37.zip
+            b2
+            install
+            -j8
+            toolset=${TOOLSET}
+            ${ADDRESS_MODEL}
+            --build-type=minimal
+            --user-config=${USER_CONFIG}
+            python=3.7
+            --prefix=${CMAKE_INSTALL_PREFIX}
         DEPENDS
             ${boost_SOURCE_DIR}/project-config.jam
         WORKING_DIRECTORY
