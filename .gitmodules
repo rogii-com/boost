@@ -738,3 +738,6 @@
 	url = ../variant2.git
 	fetchRecurseSubmodules = on-demand
 	branch = .
+[submodule "cmake/npm"]
+	path = cmake/npm
+	url = https://github.com/rogii-com/cnpm.git
