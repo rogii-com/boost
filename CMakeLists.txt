@@ -53,7 +53,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         VERSION
             3.7.10
         BUILD_NUMBER
-            0
+            1
     )
 elseif(MSVC)
     include(${PROJECT_SOURCE_DIR}/rogii/msvs_package.cmake)
