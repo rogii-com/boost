@@ -35,12 +35,11 @@ if(NOT SUBMODULE_INFO_SHOWN)
     )
 endif()
 
-include(
-    "${PROJECT_SOURCE_DIR}/cmake/npm/NastyPackageManager.cmake"
-)
+include(${PROJECT_SOURCE_DIR}/rogii/npm_v1/Include.cmake)
+
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    NPM_ADD_PACKAGE(
+    CNPM_ADD_PACKAGE(
         NAME
             gxx_runtime
         VERSION
@@ -48,32 +47,19 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
         BUILD_NUMBER
             0
     )
-    NPM_ADD_PACKAGE(
+    CNPM_ADD_PACKAGE(
         NAME
             python
         VERSION
-            3.7.4
+            3.7.10
         BUILD_NUMBER
             0
     )
 elseif(MSVC)
-    NPM_ADD_PACKAGE(
-        NAME
-            msvs
-        VERSION
-            2019
-        BUILD_NUMBER
-            1
-    )
-    NPM_ADD_PACKAGE(
-        NAME
-            windowssdk
-        VERSION
-            10.0.18362.0
-        BUILD_NUMBER
-            1
-    )
-    NPM_ADD_PACKAGE(
+    include(${PROJECT_SOURCE_DIR}/rogii/msvs_package.cmake)
+    include(${PROJECT_SOURCE_DIR}/rogii/windowssdk_package.cmake)
+
+    CNPM_ADD_PACKAGE(
         NAME
             python
         VERSION
@@ -90,16 +76,9 @@ set(
     "windows"
 )
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(
-        REPOSITORY_OS
-        "linux"
-    )
-endif()
-
-NPM_PREPARE_PACKAGES(
+CNPM_PREPARE_PACKAGES(
     DEFAULT_REPOSITORY_URLS
-    "https://cnpm.rogii.com/${REPOSITORY_OS}/public"
+    "$ENV{CNPM_URLS}"
 )
 
 get_property(
@@ -193,7 +172,7 @@ elseif(MSVC)
         COMMAND
             ${CMAKE_COMMAND}
             -DPROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}
-            -P ${PROJECT_SOURCE_DIR}/cmake/ProjectConfig.cmake
+            -P ${PROJECT_SOURCE_DIR}/rogii/ProjectConfig.cmake
         WORKING_DIRECTORY
             ${PROJECT_SOURCE_DIR}
         USES_TERMINAL
