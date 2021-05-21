@@ -143,6 +143,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
             link=static
             threading=multi
             runtime-link=shared
+            cflags=-fPIC
             cxxflags=-fPIC
             ${ADDRESS_MODEL}
             --layout=versioned
