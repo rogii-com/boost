@@ -93,7 +93,7 @@ execute_process(
 
 file(
     COPY
-        package.cmake
+        rogii/package.cmake
     DESTINATION
         "${CMAKE_INSTALL_PREFIX}"
 )
