@@ -778,3 +778,6 @@
 	url = https://github.com/boostorg/pfr.git
 	fetchRecurseSubmodules = on-demand
 	branch = .
+[submodule "rogii/npm"]
+	path = rogii/npm
+	url = https://github.com/rogii-com/cnpm.git
