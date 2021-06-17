@@ -1,0 +1,28 @@
+import os ;
+local PYTHON_ROOT64 = [ os.environ PYTHON_LIBDIR ] ; 
+local PYTHON_ROOT32 = [ os.environ PYTHON_LIBDIR ] ; 
+
+using python : 3.7
+ : $(PYTHON_ROOT64)\\bin\\python.exe
+ : $(PYTHON_ROOT64)\\include
+ : $(PYTHON_ROOT64)\\bin
+ : <variant>release <address-model>64 ;
+
+using python : 3.7
+ : $(PYTHON_ROOT64)\\bin\\python.exe
+ : $(PYTHON_ROOT64)\\include
+ : $(PYTHON_ROOT64)\\bin
+ : <variant>debug <address-model>64 ;
+
+using python : 3.7
+ : $(PYTHON_ROOT32)\\bin\\python.exe
+ : $(PYTHON_ROOT32)\\include
+ : $(PYTHON_ROOT32)\\bin
+ : <variant>release <address-model>32 ;
+
+using python : 3.7
+ : $(PYTHON_ROOT32)\\bin\\python.exe
+ : $(PYTHON_ROOT32)\\include
+ : $(PYTHON_ROOT32)\\bin
+ : <variant>debug <address-model>32 ;
+ 
