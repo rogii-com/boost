@@ -5,9 +5,9 @@ CNPM_ADD_PACKAGE(
     NAME
         python
     VERSION
-        3.7.4
+        3.10.5
     BUILD_NUMBER
-        1
+        16
     TAG
-        sdk14393_vs2015up3
+        brdev-rogii-v3.10.5-r79d143
 )
