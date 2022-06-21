@@ -7,7 +7,7 @@ CNPM_ADD_PACKAGE(
     VERSION
         3.7.13
     BUILD_NUMBER
-        19
+        21
     TAG
-        brdev-rogii-v3.7.13-rabadf6
+        sdk18362_vsbt19
 )
