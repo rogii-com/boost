@@ -7,7 +7,7 @@ CNPM_ADD_PACKAGE(
     VERSION
         3.7.13
     BUILD_NUMBER
-        21
+        23
     TAG
         sdk18362_vsbt19
 )
