@@ -12,7 +12,7 @@ CNPM_ADD_PACKAGE(
     VERSION
         3.7.13
     BUILD_NUMBER
-        91
+        99
     TAG
         gxx9.2.1
 )
