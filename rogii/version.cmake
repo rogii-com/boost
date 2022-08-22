@@ -5,7 +5,7 @@ set(
 
 set(
     BOOST_VERSION_MINOR
-    76
+    80
 )
 
 set(
