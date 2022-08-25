@@ -10,5 +10,5 @@ set(
 
 set(
     MSVS_SDK_VERSION
-    10.0.18362.0
+    10.0.20348.0
 )
