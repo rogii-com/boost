@@ -2,7 +2,7 @@ CNPM_ADD_PACKAGE(
     NAME
         gxx_runtime
     VERSION
-        9.2.1
+        12.2.0
     BUILD_NUMBER
         0
 )
@@ -12,7 +12,7 @@ CNPM_ADD_PACKAGE(
     VERSION
         3.7.13
     BUILD_NUMBER
-        99
+        581
     TAG
-        gxx9.2.1
+        gxx12.2.0
 )
