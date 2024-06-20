@@ -109,7 +109,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
             --layout=versioned
             --build-type=minimal
             --user-config=${USER_CONFIG}
-            python=3.7
+            python=3.12
             --prefix=${CMAKE_INSTALL_PREFIX}
         DEPENDS
             ${PROJECT_ROOT_PATH}/project-config.jam
@@ -147,7 +147,7 @@ elseif(MSVC)
             -E
             env
             PYTHON_LIBDIR=${PYTHON_LIBDIR}
-            PYTHONPATH=${PYTHON_LIBDIR}/python37.zip
+            PYTHONPATH=${PYTHON_LIBDIR}/python312.zip
             b2
             install
             -j${N}
@@ -156,7 +156,7 @@ elseif(MSVC)
             ${ADDRESS_MODEL}
             --build-type=minimal
             --user-config=${USER_CONFIG}
-            python=3.7
+            python=3.12
             --prefix=${CMAKE_INSTALL_PREFIX}
         DEPENDS
             ${PROJECT_ROOT_PATH}/project-config.jam
