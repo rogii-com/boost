@@ -7,7 +7,7 @@ CNPM_ADD_PACKAGE(
     VERSION
         3.12.4
     BUILD_NUMBER
-        25
+        32
     TAG
         vsbt22
 )
