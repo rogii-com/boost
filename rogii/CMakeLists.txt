@@ -130,7 +130,7 @@ elseif(MSVC)
         OUTPUT
             ${PROJECT_ROOT_PATH}/project-config.jam
         COMMAND
-            cmd /C bootstrap.bat vc142
+            cmd /C bootstrap.bat vc143
         COMMAND
             ${CMAKE_COMMAND}
             -DPROJECT_SOURCE_DIR=${PROJECT_ROOT_PATH}
