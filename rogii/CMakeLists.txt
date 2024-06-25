@@ -157,6 +157,11 @@ elseif(MSVC)
             --build-type=minimal
             --user-config=${USER_CONFIG}
             python=3.12
+            define=BOOST_USE_WINAPI_VERSION=0x0A00
+            define=WINVER=0x0A00
+            define=_WIN32_WINNT=0x0A00
+            define=_WIN32_WINDOWS=0x0A00
+            define=_WIN32_IE=0x0A00
             --prefix=${CMAKE_INSTALL_PREFIX}
         DEPENDS
             ${PROJECT_ROOT_PATH}/project-config.jam
