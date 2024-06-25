@@ -143,6 +143,8 @@ elseif(MSVC)
         OUTPUT
             ${INSTALLED_BOOST_VERSION_HEADER_FILE_PATH}
         COMMAND
+            sh -c "sed -i '/| Py_TPFLAGS_HAVE_GC/d' libs/python/src/object/enum.cpp" 
+        COMMAND
             ${CMAKE_COMMAND}
             -E
             env
