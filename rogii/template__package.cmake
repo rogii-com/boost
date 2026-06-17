@@ -54,59 +54,59 @@ if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     )
 endif()
 
+# Derive COMPONENTS from the package itself (one lib/cmake/boost_<name>-<ver> dir per component),
+# so the list always matches what was actually built per platform with no manual upkeep.
+# Exclude components whose configs find_dependency() external packages (MPI, Python/NumPy): those
+# would fail configure on consumers that lack them. Link-time-only deps (e.g. stacktrace backends)
+# are safe and need no exclusion.
 set(
-    COMPONENTS
-
-    atomic
-    chrono
-    container
-    context
-    contract
-    coroutine
-    date_time
-    exception
-    fiber
-    filesystem
-    graph
-    headers
-    iostreams
-    json
-    locale
-    log_setup
-    log
-    math_c99
-    math_c99f
-    math_c99l
-    math_tr1
-    math_tr1f
-    math_tr1l
-    nowide
-    prg_exec_monitor
-    program_options
-    python
-    random
-    regex
-    serialization
-    stacktrace_noop
-    system
-    test_exec_monitor
-    thread
-    timer
-    type_erasure
-    unit_test_framework
-    wave
-    wserialization
+    BOOST_COMPONENTS_EXCLUDE
+    mpi
+    mpi_python
+    graph_parallel
+    numpy
 )
 
-if(WIN32)
-    set(
-        COMPONENTS
+file(
+    GLOB
+    BOOST_COMPONENT_CONFIG_DIRS
+    RELATIVE
+        "${CMAKE_CURRENT_LIST_DIR}/lib/cmake"
+    "${CMAKE_CURRENT_LIST_DIR}/lib/cmake/boost_*-@BOOST_VERSION@"
+)
 
-        ${COMPONENTS}
-        stacktrace_windbg_cached
-        stacktrace_windbg
+set(
+    COMPONENTS
+    ""
+)
+
+foreach(BOOST_COMPONENT_DIR ${BOOST_COMPONENT_CONFIG_DIRS})
+    string(
+        REGEX REPLACE
+            "^boost_(.+)-@BOOST_VERSION@$"
+            "\\1"
+            BOOST_COMPONENT
+            "${BOOST_COMPONENT_DIR}"
     )
-endif()
+
+    list(
+        FIND
+        BOOST_COMPONENTS_EXCLUDE
+        "${BOOST_COMPONENT}"
+        BOOST_COMPONENT_EXCLUDED
+    )
+
+    if(BOOST_COMPONENT_EXCLUDED EQUAL -1)
+        list(
+            APPEND
+            COMPONENTS
+            ${BOOST_COMPONENT}
+        )
+    endif()
+endforeach()
+
+unset(BOOST_COMPONENT_CONFIG_DIRS)
+unset(BOOST_COMPONENTS_EXCLUDE)
 
 find_package(
     Boost
