@@ -5,9 +5,9 @@ CNPM_ADD_PACKAGE(
     NAME
         python
     VERSION
-        3.12.4
+        3.12.14
     BUILD_NUMBER
-        32
+        50
     TAG
-        vsbt22
+        sdk26100_vsbt18
 )
