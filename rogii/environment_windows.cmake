@@ -7,7 +7,7 @@ CNPM_ADD_PACKAGE(
     VERSION
         3.12.14
     BUILD_NUMBER
-        50
+        54
     TAG
         sdk26100_vsbt18
 )
