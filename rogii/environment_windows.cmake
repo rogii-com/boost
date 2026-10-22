@@ -11,3 +11,12 @@ CNPM_ADD_PACKAGE(
     TAG
         sdk26100_vsbt18
 )
+
+CNPM_ADD_PACKAGE(
+    NAME
+        python_libraries
+    VERSION
+        3.12.1
+    BUILD_NUMBER
+        5
+)

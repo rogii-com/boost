@@ -103,6 +103,27 @@ execute_process(
         ${BUILD_PATH}
 )
 
+if(WIN32 AND ARCH STREQUAL "amd64")
+    foreach(
+        VARIANT_PATTERN
+        "-mt-gd-x"
+        "-mt-x"
+    )
+        file(
+            GLOB
+            BOOST_NUMPY_LIBRARY
+            "${CMAKE_INSTALL_PREFIX}/lib/libboost_numpy*${VARIANT_PATTERN}*.lib"
+        )
+
+        if(NOT BOOST_NUMPY_LIBRARY)
+            message(
+                FATAL_ERROR
+                "boost_numpy (${VARIANT_PATTERN}) was not built; check that the build Python imports numpy"
+            )
+        endif()
+    endforeach()
+endif()
+
 configure_file(
     "${ROGII_FOLDER_PATH}/template__package.cmake"
     "${CMAKE_INSTALL_PREFIX}/package.cmake"
