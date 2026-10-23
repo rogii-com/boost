@@ -126,6 +126,14 @@ elseif(MSVC)
         USER_CONFIG
         "starsteer.jam"
     )
+    # b2 builds boost_numpy only when the interpreter it runs can import numpy.
+    get_property(
+        PYTHON_LIBRARIES_DIR
+        TARGET
+            PythonLibs::libraries
+        PROPERTY
+            INTERFACE_PYTHON_LIBS_DIR
+    )
     add_custom_command(
         OUTPUT
             ${PROJECT_ROOT_PATH}/project-config.jam
@@ -147,7 +155,7 @@ elseif(MSVC)
             -E
             env
             PYTHON_LIBDIR=${PYTHON_LIBDIR}
-            PYTHONPATH=${PYTHON_LIBDIR}/python312.zip
+            PYTHONPATH=${PYTHON_LIBDIR}/python312.zip$<SEMICOLON>${PYTHON_LIBRARIES_DIR}
             b2
             install
             -j${N}
